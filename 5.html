@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http_equiv="Content_Type" content="text/html; charset=utf-8" />
+
+<title>读取、设置文本框中的光标位置</title>
+
+</head>
+
+<body>
+
+<script>
+
+//取光标位置及选中内容
+
+//返回值为选中范围的开始位置、结束位置以及其中内容
+
+function getCursor (elem){
+
+    var rangeData = {start:0, end:0, text:''};
+
+    elem.focus();
+
+　　if(typeof(elem.selectionStart) == 'number') { //W3C
+
+    　　rangeData.start = elem.selectionStart; //光标起始位置
+
+    　　rangeData.end = elem.selectionEnd; //光标末尾位置
+
+    　　rangeData.text = elem.value.substring(rangeData.start,rangeData.end); //获取文本框value
+
+　　} 
+
+    else if (document.selection) { //IE
+
+    　　var sRange = document.selection.createRange();
+
+    　　var oRange = document.body.createTextRange();
+
+        var i = 0;
+
+    　　oRange.moveToElementText(elem);
+
+    　　rangeData.text = sRange.text;
+
+    　　rangeData.bookmark = sRange.getBookmark();
+
+    　　for(; sRange.moveStart("character", -1) !== 0; i++) {
+
+        　　if (elem.value.charAt(i) == '\r') {
+
+        　　  i++; //IE的特殊处理，遇到enter键需要加1
+
+    　      }
+
+        }
+
+    　　rangeData.start = i;
+
+    　　rangeData.end = rangeData.text.length + rangeData.start;
+
+    　　rangeData.text = elem.value.substring(rangeData.start,rangeData.end);
+
+　　}
+
+　　return rangeData;
+
+}
+
+//设置光标位置
+
+function setCursor (elem,pos){
+
+    elem.focus();
+
+    if(elem.setSelectionRange){ //W3C
+
+        elem.setSelectionRange(pos,pos);
+
+    }
+
+　　else if(elem.createTextRange){ //IE
+
+        var range = elem.createTextRange(); //新建textRange对象  
+
+        range.moveStart('character',pos); //更改range对象的开始位置
+
+        range.collapse(true); //光标移动到范围结尾
+
+        range.select(); //选中
+
+    }
+
+}
+
+window.onload = function(){
+
+    var input = document.getElementsByTagName('input')[0];
+
+    var getBtn = document.getElementsByTagName('button')[0];
+
+    var setBtn = document.getElementsByTagName('button')[1];
+
+    var div = document.getElementsByTagName('div')[0];
+
+    getBtn.onclick = function(){
+
+        var cursorD = getCursor(input);
+
+        var arrD = [cursorD.start,cursorD.end,cursorD.text];
+
+        div.innerHTML = arrD.join(',');
+
+    }
+
+    setBtn.onclick = function(){
+
+        setCursor(input,3);
+
+    }
+
+}
+
+</script>
+
+<input type="text" value="" />
+
+<button>读取光标位置</button>
+
+<button>设置光标到第三个字之后</button>
+
+<div></div>
+
+</body>
+
+</html>

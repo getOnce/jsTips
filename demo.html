@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>tips</title>
+<style>
+	dd{display: none;}
+	.on+dd{display: block;}
+	iframe{width: 100%;border: solid 1px #eee;height: 100px;}
+</style>
+<script>
+	function $(selector){
+		return document.querySelector(selector);
+	}
+	function $all(selector){
+		return document.querySelectorAll(selector);
+	}
+	window.onload = function(){
+		var dt = $all("dt"),l = dt.length,i=0,$on = false;
+		for(;i<l;i++){
+			dt[i].addEventListener("click",function(){
+				($on=$(".on"))&&$on.setAttribute("class","");
+				this.setAttribute("class","on");
+			},false);
+		}
+		
+	}
+</script>
+</head>
+<body>
+<dl>
+	<dt>
+		<h3>1、强制360用谷歌内核</h3>
+	</dt>
+	<dd>
+		<iframe src="1.html" frameborder="0"></iframe>
+	</dd>
+	<dt>
+		<h3>2、js实现extend</h3>
+	</dt>
+	<dd>
+		<iframe src="2.html" frameborder="0"></iframe>
+	</dd>
+	<dt>
+		<h3>
+			3、css空心字
+		</h3>
+	</dt>
+	<dd>
+		<iframe src="3.html" frameborder="0"></iframe>
+	</dd>
+	<dt>
+		<h3>
+			4、css3超出两行显示省略号
+		</h3>
+	</dt>
+	<dd>
+		<iframe src="4.html" frameborder="0"></iframe>
+	</dd>
+	<dt>
+		<h3>
+			5、读取、设置文本框中的光标位置	
+		</h3>
+		
+	</dt>
+	<dd>
+		<iframe src="5.html" frameborder="0"></iframe>
+	</dd>
+	<dt>
+		<h3>
+			6、模式匹配
+		</h3>
+	</dt>
+	<dd>
+		<iframe src="6.html" frameborder="0"></iframe>
+	</dd>
+	<dt>
+		<h3>
+			7、CSS禁止文字选择
+		</h3>
+	</dt>
+	<dd>
+		<iframe src="7.html" frameborder="0"></iframe>
+	</dd>
+</dl>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

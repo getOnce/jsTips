@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>7、CSS禁止文字选择</title>
+</head>
+<body>
+	<div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle" id="detailArticleContent_ptkaiapt4bxy_baiduscarticle">
+		<p>user-select有两个值：</p>
+		<p>none：用户不能选择文本</p>
+		<p>text：用户可以选择文本</p>
+		<p>需要注意的是：user-select并不是一个W3C的CSS标准属性，浏览器支持的不完整，需要对每种浏览器进行调整</p>
+		<p>body{</p><p>&nbsp; &nbsp;-moz-user-select: none; /*火狐*/</p>
+		<p>&nbsp; &nbsp;-webkit-user-select: none; &nbsp;/*webkit浏览器*/</p>
+		<p>&nbsp; &nbsp;-ms-user-select: none; &nbsp; /*IE10*/</p>
+		<p>&nbsp; &nbsp;-khtml-user-select: none; /*早期浏览器*/</p>
+		<p>&nbsp; &nbsp;user-select: none;</p>
+		<p>}</p><p>IE6-9还没发现相关的CSS属性</p>
+		<p>//IE6-9</p><p>document.body.onselectstart = document.body.ondrag = function(){</p><p>&nbsp; &nbsp; return false;</p><p>}</p><p><br></p></div>
+</body>
+</html>
