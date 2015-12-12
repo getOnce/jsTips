@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11、取得或设置样式的函数</title>
+</head>
+<body>
+	<div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle" id="detailArticleContent_ptkaiapt4bxy_baiduscarticle"><p>function css(obj,name,value){</p><p>&nbsp; &nbsp; if(arguments.length ==2){</p><p>&nbsp; &nbsp; &nbsp; &nbsp; if(obj.currentStyle){</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return obj.currentStyle[name]</p><p>&nbsp; &nbsp; &nbsp; &nbsp; }else{</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return getComputedStyle(obj,false)[name];</p><p>&nbsp; &nbsp; &nbsp; &nbsp; }</p><p>&nbsp; &nbsp; }else{</p><p>&nbsp; &nbsp; &nbsp; &nbsp; obj.style[name]=value</p><p>&nbsp; &nbsp; }</p><p>}</p><p><br></p></div>
+</body>
+</html>

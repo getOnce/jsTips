@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>9、取得iframe并刷新的方法</title>
+</head>
+<body>
+	<div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle" id="detailArticleContent_ptkaiapt4bxy_baiduscarticle"><p>&lt;!DOCTYPE html&gt;</p><p>&lt;html&gt;</p><p>&lt;head&gt;</p><p>	&lt;title&gt;</p><p>		iframe刷新</p><p>	&lt;/title&gt;</p><p>	&lt;script src="jquery-1.11.1.min.js"&gt;&lt;/script&gt;</p><p>&lt;/head&gt;</p><p>&lt;body&gt;</p><p>	&lt;div id="i1"&gt;</p><p>		&lt;iframe width="200" height="100" src="i1.html"&gt;</p><p>		&lt;/iframe&gt;</p><p>	&lt;/div&gt;</p><p>	&lt;div id="i2"&gt;</p><p>		&lt;iframe width="200" height="100" name="i2" src="i2.html"&gt;</p><p>		&lt;/iframe&gt;</p><p>	&lt;/div&gt;</p><p>	&lt;input type="button" value="refresh iframe1" onclick="refresh1()"/&gt;</p><p>	&lt;input type="button" value="refresh iframe2" onclick="refresh2()"/&gt;</p><p>	&lt;input type="button" value="refresh iframe1" onclick="refresh3()"/&gt;</p><p>	&lt;input type="button" value="refresh iframe2" onclick="refresh4()"/&gt;</p><p>	&lt;script&gt;</p><p>	function refresh1(){//通过 标签取到相应的iframe</p><p>		var i = document.getElementsByTagName('iframe')[0];</p><p>		i.contentWindow.location.reload();</p><p>	}</p><p>	function refresh2(){//通过 name取到相应的iframe</p><p>		var i = document.getElementsByName('i2')[0];</p><p>		</p><p>		i.contentWindow.location.reload();</p><p>	}</p><p>	function refresh3(){//通过父级元素找到相应的iframe</p><p>		var i = document.getElementById('i1').getElementsByTagName('iframe')[0]</p><p>		i.contentWindow.location.reload();</p><p>	}</p><p>	function refresh4(){//用jquery的方法取到相应的DOM对象</p><p>		var i = $("#i1").get(0).getElementsByTagName('iframe')[0];</p><p>		i.contentWindow.location.reload();</p><p>		var i = $("div").get(0).getElementsByTagName('iframe')[0];</p><p>		i.contentWindow.location.reload();</p><p>		var i = $("div").get(1).getElementsByTagName('iframe')[0];</p><p>		i.contentWindow.location.reload();</p><p>	}</p><p>//----------------------------------------最后一个涉及到jquery对象转化为DOM对象 .get方法</p><p>	&lt;/script&gt;</p><p>&lt;/body&gt;</p><p>&lt;/html&gt;</p><p><br></p></div>
+</body>
+</html>
