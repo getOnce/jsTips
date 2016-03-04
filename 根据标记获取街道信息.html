@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Google Maps Demo</title>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script type="text/javascript">
+    var infowindow;
+    
+    function initialize() {
+        //var point = new google.maps.LatLng(18.252847, 109.511909);
+        var point = new google.maps.LatLng(32.060255, 118.796877); // 地图中心
+        var myOptions = {
+          zoom: 15, // 缩放级别
+          center: point,
+          mapTypeId: google.maps.MapTypeId.ROADMAP, // 显示普通的街道地图
+          mapTypeControl: false, // 地图类型控件
+          overviewMapControl: false, // 总览图控件
+          scaleControl: false, // 比例控件
+          streetViewControl: false // 街景视图
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        
+        //添加地图标记
+        var marker = new google.maps.Marker({
+            position: point,
+            map: map
+        });
+        marker.setDraggable(true); // 设置可拖拽
+        
+        //初始化信息窗口
+        infowindow = new google.maps.InfoWindow({
+            content: "",
+            size: new google.maps.Size(50,50)
+        });
+
+        //添加拖动监听事件
+        google.maps.event.addListener(marker, 'dragend', function(){
+            showAddress(map, marker);
+        });
+        //添加点击监听事件
+        google.maps.event.addListener(marker, 'click', function(){
+            showAddress(map, marker);
+        });
+    }
+    
+    function showAddress(map, marker)
+    {
+        var latlng = marker.getPosition();
+        var geocoder = new google.maps.Geocoder();
+        
+        //根据经纬度获取地址信息
+        geocoder.geocode({'latLng': latlng}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+                var address = results[1].formatted_address + "<br />";
+                address = results[0].formatted_address + "<br />";
+                address += "纬度：" + latlng.lat() + "<br />";
+                address += "经度：" + latlng.lng();
+                
+                infowindow.setContent(address);
+                infowindow.open(map, marker);
+            }
+          } else {
+            alert("Geocoder failed due to: " + status);
+          }
+        });
+    }
+    </script>
+  </head>
+
+  <body onload="initialize()">
+    <div id="map_canvas" style="width: 600px; height: 400px"></div>
+  </body>
+</html>
