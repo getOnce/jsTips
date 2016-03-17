@@ -1,0 +1,97 @@
+/* list style*/
+.icon-location:before{content:"\e67c";}
+.tiny-wrap{margin: 0 12px;line-height: 22px;}
+.tiny-listBox{overflow: hidden;border:solid 1px #e9e9e9;}
+.tiny-listStyle1{margin-bottom: -1px;}
+.tiny-listStyle1 .innerBox{border-bottom:dashed 1px #ededed;overflow: hidden;padding: 14px 12px;display: block;}
+.tiny-listStyle1:last-child .innerBox{border: none;}
+.tiny-listStyle1 .right{float: right;width: 30%;border-left: dashed 1px #e1e1e1;}
+.tiny-listStyle1 .left{overflow: hidden;line-height: 16px;}
+.tiny-listStyle1 .price{font-size: 12px;color: #848484;text-align: right;line-height: 14px;height: 14px;margin-top: 6px;}
+.tiny-listStyle1 .price em{color: #ff7466;font-size: 19px;}
+.tiny-listStyle1 .sold{font-size: 12px;text-align: right;color: #848484;position: relative;top:2px;}
+.tiny-listStyle1 .cube{float: left;width: 16px;height: 100%;min-height: 23px;margin-right: 5px;margin-top: 3px;
+	color: #fff;font-size: 11px;border-radius: 3px;}
+.tiny-listStyle1 .main{line-height: 22px;font-size: 14px;}
+/* list style2 */
+.tiny-listStyle2{margin-bottom: 20px;border: solid 1px #ececec;}
+.tiny-listStyle2 dl{border-radius: 3px;padding: 0 12px;}
+.tiny-listStyle2 dt{color:#0cbf79;line-height: 20px;padding: 11px 0 8px 0;border-bottom: dashed 1px #ececec;
+margin-bottom: 7px;}
+.tiny-listStyle2 dd{font-size: 12px;color: #848484;padding-bottom: 8px;}
+.tiny-listStyle2 dt .icon-place{float: left;}
+.tiny-listStyle2 dt h4{font-size: 12px;color: #848484;overflow: hidden;clear:both;
+	margin: 3px 0 0 18px;white-space: nowrap;text-overflow:ellipsis;height: 14px;line-height: 14px;}
+.tiny-listStyle2:active,
+.tiny-listStyle2:focus {
+    background-color: #f7f7f7;
+}
+.tiny-listStyle2:active h3,
+.tiny-listStyle2:focus h3,
+.tiny-listStyle2:active dt,
+.tiny-listStyle2:focus dt{
+	color: #007852;
+}
+
+.tiny-cube{display: inline-block;}
+.tiny-redCube{background-color: #ff7466;height: 16px;padding: 0 2px;border-radius: 2px;}
+/*更多*/
+.tiny-listMore{text-align: center;margin: 14px 0 31px 0;display: block;color: #0cbf79;font-size: 14px;}
+.tiny-listMore .icon-place-arrow-right::after{position: relative;top:1px;left:-2px;}
+.tiny-arrowMore{
+	display: block;
+    color: #c0c0c0;
+    font-size: 14px;
+    text-align: center;
+    height: 34px;
+    line-height: 34px;
+    margin-bottom: 10px;
+}
+/*ellipsis*/
+.tiny-ellipsis{
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	line-height: 24px;
+}
+.tiny-ellipsis p,
+.tiny-ellipsis div{display: inline-block;}
+.tiny-ellipsis1{-webkit-line-clamp: 1;}
+.tiny-ellipsis2{-webkit-line-clamp: 2;}
+.tiny-ellipsis3{-webkit-line-clamp: 3;}
+.tiny-ellipsis10{-webkit-line-clamp: 10;}
+
+
+/* 超出截取 */
+.tiny-box{position: relative;overflow: hidden;}
+.tiny-height1{max-height: 60px;}
+.tiny-height2{max-height: 72px;}
+.tiny-height2 .tiny-more{top:45px;}
+.tiny-height3{max-height: 95px;}
+.tiny-height3 .tiny-more{top:69px;}
+.tiny-height10{max-height: 248px;} 
+.tiny-height10 .tiny-more{top:220px;}
+
+.tiny-more{text-align: center;background-color: #fff;border: solid 1px transparent;padding: 1px 0 2px;}
+.tiny-more .icon-place-arrow-down:after,
+.tiny-more .icon-place-arrow-up:before
+{color: #c0c0c0;font-size: 18px;position: relative;top:2px;margin-left: 5px;}
+.tiny-open .tiny-more{bottom: 0;top:auto;}
+.tiny-open{padding-bottom: 40px;max-height:none;}
+.tiny-box .tiny-more{position: absolute;left: 0;width: 100%;color: #c0c0c0}
+
+.tiny-line{border-top: solid 1px #ececec;border-bottom:transparent 1px solid;}
+
+
+
+
+
+
+
+
+
+
+
+

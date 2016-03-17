@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>圆</title>
+  <style>
+  canvas {
+    display: block;
+    margin: 100px auto 0 auto;
+    box-shadow: 0 0 10px #000;
+  }
+  </style>
+</head>
+<body>
+  <button onclick="window.location.reload()">刷新,随机来</button>
+  <canvas id="canvas" width="500" height="600"></canvas>
+  <script>
+    var canvas = document.getElementById('canvas'),
+      context  = canvas.getContext('2d');
+    // 随机颜色
+    function randomColor() {
+      return 'rgb(' + [0xff, 0xff, 0xff].map(function (num) {
+        return Math.floor(num * Math.random());
+      }).join(',') + ')';
+    }
+    // 计算角度, 根据三角函数
+    function calcAngle(c1, c2) {
+      var bc;
+      if (c2.x == c1.x) {
+        if (c2.y > c1.y) {
+          return Math.PI;
+        } else {
+          return 0;
+        }
+      } else if (c2.y == c1.y) {
+        if (c2.x > c1.x) {
+          return Math.PI / 2;
+        } else {
+          return 1.5 * Math.PI;
+        }
+      } else {
+        if (c2.x > c1.x && c2.y > c1.y) {
+          bc = 0;
+        } else if (c2.x > c1.x && c2.y < c1.y) {
+          bc = Math.PI;
+        } else if (c2.x < c1.x && c2.y < c1.y) {
+          bc = Math.PI;
+        } else if (c2.x < c1.x && c2.y > c1.y) {
+          bc = 2 * Math.PI;
+        }
+      }
+      return Math.atan((c2.x - c1.x) / (c2.y - c1.y)) + bc;
+    }
+    // 画圆
+    function drawCircle(circle) {
+      console.info(circle);
+      context.beginPath();
+      context.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI);
+      context.fillStyle = randomColor();
+      context.fill();
+    }
+    // 设两圆之间相距 d=10, 那么圆心的距离为 r1 + r2 + d
+    var d = 10;
+    // 中心那个圆, 称为圆a
+    var Ca = { x: 250, y: 300, r: 80 };
+    drawCircle(Ca);
+    // 圆b的半径已知, 根据热度
+    var Cb = { r: 70 };
+    // 随机取一个x坐标, 算法自己定
+    Cb.x = Ca.x - Math.floor((Cb.r * Math.random()));
+    // 根据毕达哥拉斯定理(勾股定理)计算出圆b的y坐标
+    // (Ca.x - Cb.x)^2 + (Ca.y - Cb.y)^2 = (Ca.r + Cb.r + d)^2;
+    // 就取其中一个解, 不要在意这些细节
+    Cb.y = Ca.y - Math.sqrt(Math.pow(Ca.r + Cb.r + d, 2) - Math.pow(Ca.x - Cb.x, 2));
+    drawCircle(Cb);
+    // 圆c的半径也是已知, 根据热度
+    var Cc = { r: 55 };
+    // 圆a到圆b的圆心距离
+    var Lab = Ca.r + Cb.r + d;
+    // 圆a到圆c的圆心距离
+    var Lac = Ca.r + Cc.r + d;
+    // 圆b到圆c的圆心距离
+    var Lbc = Cb.r + Cc.r + d;
+    // 根据余弦定理求∠BAC
+    var Abac = Math.acos(
+      (Math.pow(Lac, 2) + Math.pow(Lab, 2) - Math.pow(Lbc, 2)) / (2 * Lac * Lab)
+    );
+    var Aab = calcAngle(Ca, Cb);
+    // 这是其中一边
+    // Cc.x = Math.sin(Aab - Abac) * Lac + Ca.x;
+    // Cc.y = Math.cos(Aab - Abac) * Lac + Ca.y;
+    // 这是另一边
+    Cc.x = Math.sin(Aab + Abac) * Lac + Ca.x;
+    Cc.y = Math.cos(Aab + Abac) * Lac + Ca.y;
+    drawCircle(Cc);
+    
+    var obj = {}
+   
+    if(obj.name&&obj.name.length){
+      
+    }
+  </script>
+</body>
+</html>
