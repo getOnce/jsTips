@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跨域问题</title>
+</head>
+<body>
+	
+	<div>
+		http://common1.qyerstatic.com
+		在这个域名绑定的文件根目录下查看一下project/common/basic/font/.htaccess 
+		内容：
+		<FilesMatch ".(ttf|otf|eot|woff)$">
+		    <IfModule mod_headers.c>
+		        Header set Access-Control-Allow-Origin "*"
+		    </IfModule>
+		</FilesMatch>
+	</div>
+</body>
+</html>
