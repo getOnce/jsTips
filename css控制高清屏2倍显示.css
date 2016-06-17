@@ -13,3 +13,7 @@ only screen and (                min-resolution: 2dppx) {
 		background-position: -110px -69px;
 	}
 }
+
+
+
+/**(window.devicePixelRatio > 1 ? '@2x.png' : '.png')**/
