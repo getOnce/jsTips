@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>18、手机呼起键盘的时候会触发$(window).resize事件</title>
+</head>
+<body>
+	可以用这个方法来兼听键盘呼起，退出事件，当然要排除其它可能会造成resize的事件
+	<script>
+		$(window).resize(function(){})
+	</script>
+	
+</body>
+</html>
