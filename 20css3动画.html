@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20css3动画</title>
+</head>
+<body>
+	<style>
+	.move{
+		animation: fadein 1s;
+		animation-direction: normal;
+		animation-delay: 0.2s;
+		animation-timing-function: ease-in;
+		-webkit-animation: fadein 1s infinite;
+		-webkit-animation-direction: normal; 
+		-webkit-animation-delay: 0.2s;
+		-webkit-animation-timing-function: ease-in;
+		animation-fill-mode: forwards;/* none | forwards | backwards | both; */
+	}
+	@keyframes fadein {
+	  0% {
+	    opacity: 1;
+	    transform: translateY(0px);
+	  }
+	  100% {
+	    opacity: 0;
+	    transform: translateY(60px);
+	  }
+	}
+	</style>
+	
+</body>
+</html>
