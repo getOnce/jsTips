@@ -3,8 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<title>手机翻转</title>
+	<style>
+	@keyframes fadein {
+	  0% {
+	    opacity: 1;
+	    transform: translateY(40px);
+	  }
+	  100% {
+	    opacity: 0;
+	    transform: translateY(0px);
+	  }
+	}
+	/*h1{
+		animation: fadein 1s;
+		animation-direction: normal;
+		animation-delay: 0.2s;
+		animation-timing-function: ease-in;
+		-webkit-animation: fadein 1s infinite;
+		-webkit-animation-direction: normal; 
+		-webkit-animation-delay: 0.2s;
+		-webkit-animation-timing-function: ease-in;
+	}*/
+	</style>
 </head>
 <body>
+	<h1>
+		手机翻转
+	</h1>
 	<script>
 	function orientationChange() {   
 	    switch(window.orientation) {   
@@ -23,7 +48,7 @@
 	    }
 	};  
 	// 添加事件监听   
-	addEventListener('load', function(){   
+	window.addEventListener('load', function(){   
 	    orientationChange();   
 	    window.onorientationchange = orientationChange;   
 	}); 
