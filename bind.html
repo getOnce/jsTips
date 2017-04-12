@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件绑定</title>
+</head>
+<body>
+	<div id="js-btn" data-bn-ipg="value" data-ipg="11">
+		<button data-name="hello">button</button>
+	</div>
+	<script>
+	
+
+	function Delegate(){  }
+	Delegate.prototype = {
+		temp: {},
+		/**
+		*@param ele {dom object} 被绑定的对象
+		*@param type {string} 事件类型
+		*@param hanlder {function} 绑定的方法
+		*/
+		on: function(ele, type, hanlder, props){
+			var args = [].slice.call(arguments, 0);
+			args.push('_alais_on');
+			this['args_' + arguments.length].apply(this, args);
+			return this;
+		},
+		one: function(ele, type, hanlder, props){
+			var args = [].slice.call(arguments, 0), 
+				self = this;
+			args[2] = function(){
+				hanlder.apply(this, arguments); 
+				self.off(ele, type, '_alais_on_once');
+			}
+			args.push('_alais_on_once');
+			this['args_' + arguments.length].apply(this, args);
+			return this;
+			
+		},
+		args_3: function(ele, type, hanlder, isOnce){
+			this.bind(ele, type, hanlder, isOnce);
+			return this;
+		},
+		args_4: function(ele, type, hanlder, props, isOnce){
+			var self = this;
+			this.bind(ele, type, function(e){
+				self.getProps(e, e.target || e.srcElement, props, ele, hanlder);
+			}, isOnce);
+			return self;
+		},
+		off: function(ele, type, isOnce){
+			var isOnce = isOnce || '_alais_on';
+			if(this.temp[ ele[ isOnce ] ] 
+				&& this.temp[ ele[ isOnce ] ][ type ] 
+				&& this.temp[ ele[ isOnce ] ][ type ].length){
+				var length = this.temp[ ele[ isOnce ] ][ type ].length, 
+					fn = null;
+				for( ; fn = this.temp[ ele[ isOnce ] ][ type ][ --length ] ; ){
+					this.unbind(ele, type, fn);	
+				}
+				this.temp[ ele[ isOnce ] ][ type ] = [];
+				delete  ele[ isOnce ] ;
+			}
+			return this;
+		},
+		saveFunction: function(ele, type, hanlder, isOnce){
+			
+			this.strategy(isOnce, ele, type, hanlder);
+			return this;
+		},
+		strategy: function(isOnce, ele, type, hanlder){
+			if(!ele[isOnce]){
+				ele[isOnce] = parseInt(Math.random() * 100, 10) + '' + (new Date()).getTime();
+			}
+			if(!this.temp[ ele[ isOnce ] ]){
+				this.temp[ ele[ isOnce ] ] = {}
+			}
+			if(!this.temp[ ele[ isOnce ] ][ type ]){
+				this.temp[ ele[ isOnce ] ][ type ] = [];
+			}
+			this.temp[ ele[ isOnce ] ][ type ].push(hanlder);
+			return this;
+		},
+		bind: function(element, type, hanlder, isOnce){
+			var isOnce = isOnce || '_alais_on';
+			this.saveFunction(element, type, hanlder, isOnce);
+			this
+				.live(
+					element, 
+					type, 
+					this.temp[ element[ isOnce ] ][ type ][ this.temp[ element[ isOnce ] ][ type ].length - 1 ]);
+			return this;
+		},
+		live: function(element, type, hanlder){
+
+			if(element.addEventListener){
+				element.addEventListener(type, hanlder, false);
+			} else if(element.attachEvent){
+				element.attachEvent('on' + type, hanlder);
+			} else {
+				element['on' + type] = hanlder;
+			}
+			return this;
+		},
+		unbind: function(element, type, hanlder){
+			if(element.removeEventListener){
+				element.removeEventListener(type, hanlder, false);
+			} else if(element.detachEvent){
+				element.detachEvent('on' + type, hanlder);
+			} else {
+				element['on' + type] = null;
+			}
+			return this;
+		},
+		getProps: function(e, tar, props, ele, hanlder){
+			if( tar && tar.getAttribute && tar.getAttribute(props) ){
+				hanlder(e, tar.getAttribute(props), tar);
+			} else if (tar === ele) {
+				return ;
+			} else if ( tar && tar.parentNode ) {
+				this.getProps(e, tar.parentNode, props, ele, hanlder );
+				return ;
+			}
+			return this;
+		}
+	}
+	
+	var bind = (function(){
+		var instance = null;
+		return function(){
+			if(!instance){
+				instance = new Delegate();
+			}
+			if(arguments.length > 0){
+				instance.on.apply(instance, arguments);
+			}
+			return instance;
+		}
+	}());
+
+	
+	bind(
+		document.querySelector('#js-btn'), 
+		'click', 
+		function(e){
+			console.log(0);
+			//console.log(e.currentTarget);
+			
+		}
+	)
+	.one(
+		document.getElementsByTagName('body')[0], 
+		'click', 
+		function(e){
+			
+			console.log(1)
+			
+		}, 
+		'data-bn-ipg'
+	)
+	
+
+
+
+
+	</script>
+	
+</body>
+</html>
