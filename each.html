@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>each</title>
+
+</head>
+<body>
+
+<script>
+	var arr = {
+		name: 'super',
+		level: 0,
+		children: [
+			{
+				name: 'parent',
+				children: [
+					{
+						name: 'child1',
+						level: 3
+					}
+				],
+				level: 1,
+			},
+			{
+				name: 'parent',
+				children: [
+					{
+						name: 'child2',
+						level: 3
+					}
+				],
+				level: 2
+			}
+		]
+	}
+	var number = 0;
+	/**
+	*深度遍历
+	*@param obj {Object} 被遍历对象
+	*/
+	function deepEach (obj, callback) {
+		// body...
+		if(obj.children){
+			var i = 0,
+				max = obj.children.length;
+			for( ; i < max; i++ ){
+				callback(obj.children[i]);
+			}
+		} else {
+			callback(obj);
+		}
+	}
+function widthEach(obj){
+	var ary = []
+		number = 0;
+	function queue (obj) {
+		obj.index = number++;
+		ary.push(obj);
+	}
+	
+	function shift(){
+		var obj = ary.shift();
+		if(obj.children){
+			for(var i = 0; i < obj.children.length; i++){
+				queue(obj.children[i]);
+			}
+		} 
+		
+	}	
+
+	queue(obj)
+	shift(ary);
+
+}
+widthEach(arr);
+</script>	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
