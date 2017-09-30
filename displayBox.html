@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>display : box</title>
+	<style>
+	body > div{
+		display: box;
+		display: -webkit-box;
+
+		border: solid 1px red;
+		margin: 10px auto 0;
+	}
+	body > div div{
+		width: 50px;
+		height: 50px;
+		margin: 10px;
+		background-color: #dfdfdf;
+	}
+	.box1{
+		box-align: start;
+		-webkit-box-align: start;
+		box-pack: start;
+		-webkit-box-pack: start;
+		height: 100px;
+	}
+	.box2{
+		box-align: center;
+		-webkit-box-align: center;
+		box-pack: end;
+		-webkit-box-pack: end;
+		height: 100px;
+	}
+	.box3{
+		box-align: end;
+		-webkit-box-align: end;
+		box-pack: end;
+		-webkit-box-pack: end;
+	}
+	.box4{
+		box-align: end;
+		-webkit-box-align: end;
+		box-pack: end;
+		-webkit-box-pack: end;
+		box-orient: vertical;
+		-webkit-box-orient: vertical;
+	}
+	.box5{
+		box-align: start;
+		-webkit-box-align: start;
+		box-pack: end;
+		-webkit-box-pack: end;
+		box-orient: vertical;
+		-webkit-box-orient: vertical;
+		height: 500px;
+	}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div>
+			a	
+		</div>
+		<div>
+			b
+		</div>
+		<div>
+			c
+		</div>
+		<div>
+			d
+		</div>
+		<div>
+			e
+		</div>
+	</div>
+	<div class="box2">
+		<div>
+			a	
+		</div>
+		<div>
+			b
+		</div>
+		<div>
+			c
+		</div>
+		<div>
+			d
+		</div>
+		<div>
+			e
+		</div>
+	</div>
+	<div class="box3">
+		<div>
+			a	
+		</div>
+		<div>
+			b
+		</div>
+		<div>
+			c
+		</div>
+		<div>
+			d
+		</div>
+		<div>
+			e
+		</div>
+	</div>
+	<div class="box4">
+		<div>
+			a	
+		</div>
+		<div>
+			b
+		</div>
+		<div>
+			c
+		</div>
+		<div>
+			d
+		</div>
+		<div>
+			e
+		</div>
+	</div>
+	<div class="box5">
+		<div>
+			a	
+		</div>
+		<div>
+			b
+		</div>
+		<div>
+			c
+		</div>
+		<div>
+			d
+		</div>
+		<div>
+			e
+		</div>
+	</div>
+</body>
+</html>
